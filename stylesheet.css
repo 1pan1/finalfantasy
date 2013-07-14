@@ -1,0 +1,134 @@
+/* General */
+
+* {	
+	color: lightgrey;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url("bg-pattern.jpg") fixed;
+}
+
+hr {
+	max-width: 800px;
+	margin: 30px auto;
+}
+
+p {
+	line-height: 1.5em;
+}
+
+/* Title */
+
+.title {
+	text-align: center;
+	margin-bottom: 40px;
+	margin-top: 20px;
+}
+
+.title h1 {
+	font-size: 50px;
+}
+
+/* Navigation */
+
+nav {
+	margin: 0 auto;
+	text-align: center;
+	max-width: 800px;
+}
+
+nav ul li {
+	display: inline-block;
+	width: 6%;
+	border-left: 1px solid white;
+	transition: all .2s ease-in;
+}
+
+nav ul li:first-child {
+	border-left: 1px solid white;
+	border-bottom-left-radius: 6px; 
+	border-top-left-radius: 6px;
+}
+
+nav ul li:last-child {
+	border-right: 1px solid white;
+	border-bottom-right-radius: 6px; 
+	border-top-right-radius: 6px;
+}
+
+nav ul li:hover {
+	color: gray;
+	background-color: red;
+}
+
+/* Game List */
+
+.gamelist {
+	margin: 0 auto;
+	max-width: 800px;
+}
+
+.gamelist p {
+	padding: 10px;
+	padding-bottom: 0;
+}
+
+.oddsection {
+
+}
+
+.evensection {
+
+}
+
+/* Footer */
+
+footer {
+	margin: 20px;
+	margin-top: 0;
+}
+
+/* Resposive Design */
+
+@media screen and (max-width: 840px) {
+	h2 {
+		text-align: center;
+	}
+	.gamelist p {
+		padding: 30px;
+		padding-bottom: 0;
+	}
+	nav ul li {
+		/*width: */
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.title h1 {
+		font-size: 30px;
+	}
+	nav ul li {
+		font-size: 12px;
+		width: 10%;
+	}
+	nav ul li {
+		width: 20%;
+	}
+	nav ul li:first-child {
+		border-radius: 0px;
+		border-left: 1px solid white;
+	}
+	nav ul li:last-child {
+		border-radius: 0px;
+		border-right: 1px solid white;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.title h3 {
+		display: none;
+	}
+}
+
