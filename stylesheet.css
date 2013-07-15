@@ -6,6 +6,10 @@
 	padding: 0;
 }
 
+::selection {
+	background: blue;
+}
+
 body {
 	background: url("bg-pattern.jpg") fixed;
 }
