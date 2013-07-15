@@ -19,6 +19,25 @@ p {
 	line-height: 1.5em;
 }
 
+.even:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.toplink {
+	position: absolute;
+	right: 0px;
+}
+
+.toplink a {
+	text-decoration: none;
+}
+
+.toplink a:hover {
+	text-decoration: underline;
+}
+
 /* Title */
 
 .title {
@@ -67,20 +86,47 @@ nav ul li:hover {
 
 .gamelist {
 	margin: 0 auto;
+	position: relative;
 	max-width: 800px;
+	opacity: .7;
+	transition: all .2s ease-in;
+}
+
+.gamelist:hover {
+	opacity: 1;
 }
 
 .gamelist p {
 	padding: 10px;
 	padding-bottom: 0;
+	padding-right: 0;
 }
 
-.oddsection {
-
+.gamelist figure {
+	height: 200px;
+	width: 380px;
+	margin-top: 20px;
+	display: inline-block;
+	background-color: pink;
 }
 
-.evensection {
+.gamelist .imgleft {
+	position: relative;
+	left: 10px;
+}
 
+.gamelist .imgright {
+	position: relative;
+	right: -30px;
+}
+
+.even p {
+	width: 380px;
+	display: inline-block;
+}
+
+.even div {
+	float: right;
 }
 
 /* Footer */
@@ -96,12 +142,30 @@ footer {
 	h2 {
 		text-align: center;
 	}
+
 	.gamelist p {
-		padding: 30px;
+		padding: 10px;
 		padding-bottom: 0;
+		padding-right: 0;
+		text-align: left;
 	}
-	nav ul li {
-		/*width: */
+
+	.gamelist {
+		text-align: center;
+	}
+
+	.even {
+		text-align: left;
+	}
+
+	.gamelist figure {
+		width: 300px;
+	}
+
+	.gamelist div figure {
+		position: relative;
+		right: 5%;
+		width: 300px;
 	}
 }
 
@@ -109,26 +173,59 @@ footer {
 	nav ul li {
 		width: 26px;
 	}
+
+	.gamelist figure {
+		width: 200px;
+		height: 120px;
+	}
+
+	.even div figure {
+		width: 200px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.even div figure {
+		width: 140px;
+	}
+
+	.even p {
+		width: 340px;
+	}
 }
 
 @media screen and (max-width: 500px) {
 	.title h1 {
 		font-size: 30px;
 	}
+
 	nav ul li {
 		font-size: 12px;
 		width: 10%;
 	}
+
 	nav ul li {
 		width: 20%;
 	}
+
 	nav ul li:first-child {
 		border-radius: 0px;
 		border-left: 1px solid white;
 	}
+
 	nav ul li:last-child {
 		border-radius: 0px;
 		border-right: 1px solid white;
+	}
+
+	.gamelist figure {
+		display: none;
+	}
+
+	.gamelist p {
+		display: block;
+		margin: 0 auto;
+		width: 80%;
 	}
 }
 
@@ -137,4 +234,3 @@ footer {
 		display: none;
 	}
 }
-
