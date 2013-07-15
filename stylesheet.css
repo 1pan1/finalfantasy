@@ -21,6 +21,14 @@ hr {
 
 p {
 	line-height: 1.5em;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.review {
+	margin: 30px;
+	margin-right: 0;
+	text-align: left;
 }
 
 .even:after {
@@ -32,6 +40,7 @@ p {
 .toplink {
 	position: absolute;
 	right: 0px;
+	font-size: 14px;
 }
 
 .toplink a {
@@ -145,6 +154,10 @@ footer {
 @media screen and (max-width: 840px) {
 	h2 {
 		text-align: center;
+	}
+
+	.toplink {
+		margin-right: 30px;
 	}
 
 	.gamelist p {
