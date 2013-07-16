@@ -23,7 +23,6 @@ p {
 	line-height: 1.5em;
 	margin-left: 15px;
 	margin-right: 15px;
-	background-color: purple;
 }
 
 .review {
@@ -38,11 +37,12 @@ p {
   clear: both;
 }
 
+/* "Top" Button */
+
 .toplink {
 	position: absolute;
 	right: 0px;
 	font-size: 14px;
-	background-color: blue;
 }
 
 .toplink a {
@@ -59,7 +59,6 @@ p {
 	text-align: center;
 	margin-bottom: 40px;
 	margin-top: 20px;
-	background-color: red;
 }
 
 .title h1 {
@@ -72,7 +71,6 @@ nav {
 	margin: 0 auto;
 	text-align: center;
 	max-width: 800px;
-	background-color: orange;
 }
 
 nav ul li {
@@ -121,7 +119,19 @@ nav ul li:hover {
 	padding: 10px;
 	padding-bottom: 0;
 	padding-right: 0;
+	margin-right: 0;
 }
+
+.even p {
+	width: 380px;
+	display: inline-block;
+}
+
+.even div {
+	float: right;
+}
+
+/* Game List Images */
 
 .gamelist figure {
 	height: 200px;
@@ -141,13 +151,161 @@ nav ul li:hover {
 	right: -30px;
 }
 
-.even p {
-	width: 380px;
+.gamelist div {
 	display: inline-block;
+	text-align: center;
 }
 
-.even div {
-	float: right;
+/* Each Games' Images */
+
+.xv div .imgleft {
+	background: url("img/xv/xv1.jpg") no-repeat;
+	background-size: auto 100%;
+}
+
+.xv div .imgright {
+	background: url("img/xv/xv2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xiv div .imgtop {
+	background: url("img/xiv/xiv1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xiv div .imgbottom {
+	background: url("img/xiv/xiv2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xiii div .imgleft {
+	background: url("img/xiii/xiii1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xiii div .imgright {
+	background: url("img/xiii/xiii2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xii div .imgtop {
+	background: url("img/xii/xii1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xii div .imgbottom {
+	background: url("img/xii/xii2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xi div .imgleft {
+	background: url("img/xi/xi1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.xi div .imgright {
+	background: url("img/xi/xi2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.x div .imgtop {
+	background: url("img/x/x1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.x div .imgbottom {
+	background: url("img/x/x2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.ix div .imgleft {
+	background: url("img/ix/ix1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.ix div .imgright {
+	background: url("img/ix/ix2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.viii div .imgtop {
+	background: url("img/viii/viii1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.viii div .imgbottom {
+	background: url("img/viii/viii2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.vii div .imgleft {
+	background: url("img/vii/vii1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.vii div .imgright {
+	background: url("img/vii/vii2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.vi div .imgtop {
+	background: url("img/vi/vi1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.vi div .imgbottom {
+	background: url("img/vi/vi2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.v div .imgleft {
+	background: url("img/v/v1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.v div .imgright {
+	background: url("img/v/v2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.iv div .imgtop {
+	background: url("img/iv/iv1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.iv div .imgbottom {
+	background: url("img/iv/iv2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.iii div .imgleft {
+	background: url("img/iii/iii1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.iii div .imgright {
+	background: url("img/iii/iii2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.ii div .imgtop {
+	background: url("img/ii/ii1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.ii div .imgbottom {
+	background: url("img/ii/ii2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.i div .imgleft {
+	background: url("img/i/i1.jpg") no-repeat 0 0;
+	background-size: auto 100%;
+}
+
+.i div .imgright {
+	background: url("img/i/i2.jpg") no-repeat 0 0;
+	background-size: auto 100%;
 }
 
 /* Footer */
@@ -155,7 +313,6 @@ nav ul li:hover {
 footer {
 	margin: 20px;
 	margin-top: 0;
-	background-color: green;
 }
 
 /* Resposive Design */
@@ -174,24 +331,30 @@ footer {
 		padding-bottom: 0;
 		padding-right: 0;
 		text-align: left;
+		margin-right: 0;
 	}
 
 	.gamelist {
 		text-align: center;
 	}
 
+	.xv div .imgright {
+		background-position: -10px 0;
+	}
+
 	.even {
 		text-align: left;
 	}
 
-	.gamelist figure {
+	.gamelist div figure {
+		position: relative;
+		right: 0;
+		left: 0;
 		width: 300px;
 	}
 
-	.gamelist div figure {
-		position: relative;
-		right: 5%;
-		width: 300px;
+	.gamelist .imgleft {
+		left: 0;
 	}
 }
 
@@ -217,6 +380,16 @@ footer {
 
 	.even p {
 		width: 340px;
+	}
+
+	.gamelist div figure {
+		width: 200px;
+	}
+}
+
+@media screen and (max-width: 580px) {
+	.even div figure {
+		width: 120px;
 	}
 }
 
