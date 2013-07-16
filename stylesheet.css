@@ -11,7 +11,7 @@
 }
 
 body {
-	background: url("bg-pattern.jpg") fixed;
+	background: url("backgrounds/bg-pattern.jpg") fixed;
 }
 
 hr {
@@ -40,7 +40,11 @@ p {
 	-webkit-transform: scale(2);
 	z-index: 20;
 }
-
+/*
+.normal:hover {
+	transform: scale(1);
+}
+*/
 .even:after {
   content: "";
   display: table;
@@ -317,11 +321,11 @@ nav ul li:hover {
 	background-size: auto 100%;
 }
 
-.gamelist div .enlarge {
+.gamelist div #enlarge {
 	background-position: right;
 }
 
-.gamelist div .imgleft {
+.gamelist div #enlarge.imgleft {
 	background-position: left;
 }
 
