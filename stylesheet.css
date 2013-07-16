@@ -31,6 +31,16 @@ p {
 	text-align: left;
 }
 
+.enlarge {
+	transition: all .2s ease;
+}
+
+.enlarge:hover {
+	transform: scale(2);
+	-webkit-transform: scale(2);
+	z-index: 20;
+}
+
 .even:after {
   content: "";
   display: table;
@@ -138,7 +148,6 @@ nav ul li:hover {
 	width: 380px;
 	margin-top: 20px;
 	display: inline-block;
-	background-color: pink;
 }
 
 .gamelist .imgleft {
@@ -159,7 +168,7 @@ nav ul li:hover {
 /* Each Games' Images */
 
 .xv div .imgleft {
-	background: url("img/xv/xv1.jpg") no-repeat;
+	background: url("img/xv/xv1.jpg") no-repeat 0 0;
 	background-size: auto 100%;
 }
 
@@ -308,6 +317,14 @@ nav ul li:hover {
 	background-size: auto 100%;
 }
 
+.gamelist div .enlarge {
+	background-position: right;
+}
+
+.gamelist div .imgleft {
+	background-position: left;
+}
+
 /* Footer */
 
 footer {
@@ -371,6 +388,11 @@ footer {
 	.even div figure {
 		width: 200px;
 	}
+
+	.xv div .imgright {
+		background-position: right;
+	}
+
 }
 
 @media screen and (max-width: 650px) {
