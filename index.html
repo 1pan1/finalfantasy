@@ -2,8 +2,91 @@
 <html>
 <head>
 	<title>Final Fantasy: A History</title>
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script type="text/javascript" src="javascripts/main.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		$.fn.infiniteCarousel = function () {
+
+		    function repeat(str, num) {
+		        return new Array( num + 1 ).join( str );
+		    }
+		  
+		    return this.each(function () {
+		        var $wrapper = $('> div', this).css('overflow', 'hidden'),
+		            $slider = $wrapper.find('> ul'),
+		            $items = $slider.find('> li'),
+		            $single = $items.filter(':first'),
+		            
+		            singleWidth = $single.outerWidth(), 
+		            visible = Math.ceil($wrapper.innerWidth() / singleWidth), // note: doesn't include padding or border
+		            currentPage = 1,
+		            pages = Math.ceil($items.length / visible);            
+
+
+		        // 1. Pad so that 'visible' number will always be seen, otherwise create empty items
+		        if (($items.length % visible) != 0) {
+		            $slider.append(repeat('<li class="empty" />', visible - ($items.length % visible)));
+		            $items = $slider.find('> li');
+		        }
+
+		        // 2. Top and tail the list with 'visible' number of items, top has the last section, and tail has the first
+		        $items.filter(':first').before($items.slice(- visible).clone().addClass('cloned'));
+		        $items.filter(':last').after($items.slice(0, visible).clone().addClass('cloned'));
+		        $items = $slider.find('> li'); // reselect
+		        
+		        // 3. Set the left position to the first 'real' item
+		        $wrapper.scrollLeft(singleWidth * visible);
+		        
+		        // 4. paging function
+		        function gotoPage(page) {
+		            var dir = page < currentPage ? -1 : 1,
+		                n = Math.abs(currentPage - page),
+		                left = singleWidth * dir * visible * n;
+		            
+		            $wrapper.filter(':not(:animated)').animate({
+		                scrollLeft : '+=' + left
+		            }, 500, function () {
+		                if (page == 0) {
+		                    $wrapper.scrollLeft(singleWidth * visible * pages);
+		                    page = pages;
+		                } else if (page > pages) {
+		                    $wrapper.scrollLeft(singleWidth * visible);
+		                    // reset back to start position
+		                    page = 1;
+		                } 
+
+		                currentPage = page;
+		            });                
+		            
+		            return false;
+		        }
+		        
+		        $wrapper.after('<a class="arrow back">&lt;</a><a class="arrow forward">&gt;</a>');
+		        
+		        // 5. Bind to the forward and back buttons
+		        $('a.back', this).click(function () {
+		            return gotoPage(currentPage - 1);                
+		        });
+		        
+		        $('a.forward', this).click(function () {
+		            return gotoPage(currentPage + 1);
+		        });
+		        
+		        // create a public interface to move to a specific page
+		        $(this).bind('goto', function (event, page) {
+		            gotoPage(page);
+		        });
+		    });  
+		};
+
+		$(document).ready(function () {
+		  $('.infiniteCarousel').infiniteCarousel();
+		});
+	</script>
+	<link href='http://fonts.googleapis.com/css?family=Almendra:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -45,8 +128,8 @@
 			As this game is still in development, There is currently no review or other information avaliable.
 		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
@@ -59,8 +142,8 @@
 			Before, the cities had hired mercenaries for their inner wars, but now they trusted only professional soldiers, leaving the sellswords unemployed and restless. To keep them from causing harm and steer their energy into helping others instead, the city-states founded a network of adventuring guilds.
 		</p>
 		<div>
-			<figure class="imgtop enlarge"></figure><br>
-			<figure class="imgbottom enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgbottom"></figure>
 		</div>
 		<p class="review">
 			Review:
@@ -77,8 +160,8 @@
 			Nova Chrysalia, a world diseased by Chaos. Made up of four regions, a monorail provides transportation for travel throughout this realm. Lightning, the protagonist, begins her final adventure in this plague-ridden land devoid of hope. However, her journey won’t be long, as the Chaos has bled through the soil, drawing near the world’s end.
 		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
@@ -86,10 +169,12 @@
 
 	<section id="xii" class="gamelist even xii">
 		<h2>Final Fantasy XII <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>The game takes place in the fictional land of Ivalice, where the empires of Archadia and Rozarria are waging an endless war. Dalmasca, a small kingdom, is caught between the warring nations. When Dalmasca is annexed by Archadia, its princess, Ashe, creates a resistance movement. During the struggle, she meets Vaan, a young adventurer who dreams of commanding an airship. They are quickly joined by a band of allies; together, they rally against the tyranny of the Archadian Empire.</p>
+		<p>
+			The game takes place in the fictional land of Ivalice, where the empires of Archadia and Rozarria are waging an endless war. Dalmasca, a small kingdom, is caught between the warring nations. When Dalmasca is annexed by Archadia, its princess, Ashe, creates a resistance movement. During the struggle, she meets Vaan, a young adventurer who dreams of commanding an airship. They are quickly joined by a band of allies; together, they rally against the tyranny of the Archadian Empire.
+		</p>
 		<div>
-			<figure class="imgtop enlarge"></figure><br>
-			<figure class="imgbottom enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgbottom"></figure>
 		</div>
 	</section>
 
@@ -101,8 +186,8 @@
 			Final Fantasy XI is set in the Age of Adventurers. It is the 884th year of the Crystal Era, twenty years after the end of the Crystal War that ravaged Vana'diel. The three main nations of Vana'diel, San d'Oria, Bastok and Windurst continue their struggle against the Beastmen who, although less organized, have regrouped and still terrorize the land. Rather than dispatching their own forces to deal with this threat, the nations of Vana'diel begin to employ adventurers to handle them as well as other minor tasks. The player is one such adventurer.
 		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
@@ -114,8 +199,8 @@
 			Following the exploits of the Summoner Yuna and her guardians as they battle an evil immortal enemy known as Sin, Final Fantasy X is the first title in the franchise to appear on the PlayStation 2. It's also the first game in Squaresoft's popular RPG series to feature voiceovers in addition to written text. Character expressiveness also reaches new heights with the aid of Squaresoft's "Facial Motion System", adding subtle facial expressions to characters in real-time. New side-quests include the underwater sport of Blitzball, and a monster battle arena as well as a redesigned fighting system that mixes classic Final Fantasy elements with a new "Sphere Grid" system.
 		</p>
 		<div>
-			<figure class="imgtop enlarge"></figure><br>
-			<figure class="imgbottom enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgbottom"></figure>
 		</div>
 	</section>
 
@@ -127,8 +212,8 @@
 			The ninth installment in the long-running RPG series and the final for the original PlayStation, Final Fantasy IX gives fans of the franchise the nostalgic thrill of re-experiencing the visual style, gameplay elements and overall spirit of the 16-bit Final Fantasy games of the 8/16 bit eras. The main story centers on Zidane Tribal, a young thief who quickly becomes engaged in a quest to save the world, along with Vivi Ornitier, a young black mage, and Princess Garnet, heir to the throne of Alexandria. The game features detailed polygonal character models and lush pre-rendered backgrounds. They all combine for an unforgettable adventure!
 		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
@@ -136,10 +221,14 @@
 
 	<section id="viii" class="gamelist even viii">
 		<h2>Final Fantasy VIII <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			“At the forefront of a rising tide of violence brought on by Galbadia's war declaration is a SeeD cadet named Squall Leonhart. Serious to a fault, Squall has earned himself the reputation of being a lone wolf.
+			A chance encounter with the free-spirited Rinoa Heartilly, however, turns his universe upside down. Having thrived on discipline, Squall finds Rinoa's carefree attitude fascinating. Yet there is no time to ponder these thoughts, for the job of dealing with the sorceress behind Galbadia's irrational hostility has fallen to SeeD and Squall.”
+			<br><br>—Official Introduction
+		</p>
 		<div>
-			<figure class="imgtop enlarge"></figure><br>
-			<figure class="imgbottom enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgbottom"></figure>
 		</div>
 	</section>
 
@@ -147,10 +236,17 @@
 
 	<section id="vii" class="gamelist vii">
 		<h2>Final Fantasy VII <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			“An energy manufacturing mega-company known as Shinra, Inc. is harvesting the sheer life energy of the Planet (known as the Lifestream) as a simple fossil fuel. The Lifestream is processed and made into products ranging from electricity and heat to Mako and Materia. The latter two materials can work miracles, granting the wisdom of the Ancients to the user. However, the Lifestream, like most other fuels, is finite in supply, and the Planet's lifeforce is being malevolently drained by the constant exploitation of Mako by Shinra. Though aware of the harmful effects, they function without remorse.
+
+			However, the real battle lies not with a corporation, but a force much more competent from the distant past. A long-thought dead warrior bent on becoming a god by draining all of the Lifestream from the Planet has risen again and will stop at nothing to achieve his goal.
+
+			Now a small rebel group emanating from the slums must quell the various dangers toward the innocent, and one mercenary for hire must look amidst the lies and deception and find the man he is within.”
+			<br><br>—Official Introduction
+		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
@@ -158,10 +254,12 @@
 
 	<section id="vi" class="gamelist even vi">
 		<h2>Final Fantasy VI <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			Learn From The Past. Many centuries have passed since the war of the Magi - civilisations have been rebuilt with iron, machines and technology. But the forces of magic have begun to return, and when an ancient Esper is discovered, the risk of war resurfaces. Featuring all-new CG cinematic sequences exclusive to this edition. Discover the origins of special featurs later developed in the subsequent FINAL FANTASY series, including summoning magic, mini quests, the Active Time Battle system and much more Numerous weapons, items, magic spells and special skills allow for incredible gameplay depth and strategy
+		</p>
 		<div>
-			<figure class="imgtop enlarge"></figure><br>
-			<figure class="imgbottom enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgbottom"></figure>
 		</div>
 	</section>
 
@@ -169,10 +267,12 @@
 
 	<section id="v" class="gamelist v">
 		<h2>Final Fantasy V <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			The game centers around a group of four strangers brought together by circumstance to save the Crystals that have mysteriously begun shattering one by one. The one behind the phenomenon is the villain Exdeath, as part of a plan to release himself from imprisonment and to gain the power of the Void, a realm of nothingness, which could bestow absolute power on one able to resist being absorbed by it. The four Warriors of Light turn their attentions to defeating Exdeath and stopping the Void's energies from consuming their world.
+		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
@@ -180,10 +280,12 @@
 
 	<section id="iv" class="gamelist even iv">
 		<h2>Final Fantasy IV <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			The game's story follows Cecil, a dark knight, as he tries to prevent the sorcerer Golbez from seizing powerful crystals and destroying the world. He is joined on this quest by a frequently changing group of allies, several of whom die, become injured, or are otherwise incapacitated by an unfortunate occurrence. Final Fantasy IV introduced innovations that became staples of the Final Fantasy series and role-playing games in general. Its "Active Time Battle" system was used in five subsequent Final Fantasy games, and unlike prior games in the series, IV gave each character their own unchangeable character class.
+		</p>
 		<div>
-			<figure class="imgtop enlarge"></figure><br>
-			<figure class="imgbottom enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgbottom"></figure>
 		</div>
 	</section>
 
@@ -191,10 +293,12 @@
 
 	<section id="iii" class="gamelist iii">
 		<h2>Final Fantasy III <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			An earthquake opens up a previously hidden cavern in Altar Cave near the village of Ur on the floating continent. Four young orphans under the care of Topapa, the village elder, explore the earthquake's impact and come across a crystal of light. The crystal grants them a portion of its power, and instructs them to go forth and restore balance to the world. Not knowing what to make of the crystal's pronouncements, but nonetheless recognizing the importance of its words, the four inform their adoptive family of their mission and set out to explore an overworld outside the area in which they were brought up, in order to bring balance back to the world.
+		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
@@ -202,10 +306,12 @@
 
 	<section id="ii" class="gamelist even ii">
 		<h2>Final Fantasy II <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			The game's story centers on four youths whose parents were killed during an army invasion by the empire of Palamecia. Three of the four main characters join a rebellion against the empire, embarking on missions to gain new magic and weapons, destroy enemy superweapons, and rescue leading members of the resistance. After defeating the empire and the Emperor, the trio discovers that the fourth youth, now a dark knight, has taken the place of the previous emperor and is preparing to attack the rebellion. Upon confronting him, the Emperor reappears as a demon and prepares to destroy the world. However, the four characters agree to join forces to defeat him, and ultimately they destroy him in his demonic castle. The Game Boy Advance remake adds a bonus story after the game is completed, following several side characters who died during the game as they attempt to defeat an alternate version of the Emperor.
+		</p>
 		<div>
-			<figure class="imgtop enlarge"></figure><br>
-			<figure class="imgbottom enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgbottom"></figure>
 		</div>
 	</section>
 
@@ -213,15 +319,64 @@
 
 	<section id="i" class="gamelist i">
 		<h2>Final Fantasy I <span class="toplink"><a href="#top">Top</a></span></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt, nisi id tempus pulvinar, enim nunc iaculis lacus, et tincidunt lacus neque eget felis. Donec aliquet risus id magna faucibus, vitae faucibus erat gravida. Proin aliquet, libero ut suscipit dictum, mauris lacus euismod neque, vel euismod ante sapien et sem. Fusce vestibulum elit et nisi ultrices, sed tempor turpis lacinia. Nulla euismod blandit orci, nec volutpat magna interdum convallis. Aliquam tincidunt dolor et enim semper rutrum sit amet vitae libero. Cras in fringilla augue. Quisque iaculis sodales tincidunt.</p>
+		<p>
+			Players guide the Warriors of Light as they set out on a quest to restore the crystals to their former luster. Its side view battles, choice and promotion of character classes, and sprawling world explored with fantastic vehicles quickly became standards of the series. This game set the stage for all FINAL FANTASY games to come.
+		</p>
 		<div>
-			<figure class="imgleft enlarge"></figure>
-			<figure class="imgright enlarge"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
+			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
 		</div>
 	</section>
 
 	<hr>
-
+	<div class="infiniteCarousel">
+      <div class="wrapper" style="overflow: hidden;">
+        <ul>
+        	<li class="cloned">
+        		<img src="img/carousel/gameplay1.jpg" height="125" width="250" alt="Wonky Buildings">
+        	</li>
+        	<li class="empty cloned"></li>
+        	<li>
+        		<img src="img/carousel/gameplay2.jpg" height="125" width="250" alt="Tall Glow">
+        	</li>
+        	<li class="empty cloned"></li>
+        	<li>
+        		<img src="img/carousel/gameplay3.jpg" height="125" width="250" alt="Rockefella">
+        	</li>
+           	<li class="empty cloned"></li>
+        	<li>
+        		<img src="img/carousel/gameplay4.jpg" height="125" width="250" alt="Chrysler Reflect">
+        	</li>
+           	<li class="empty cloned"></li>
+        	<li>
+        		<img src="img/carousel/gameplay5.jpg" height="125" width="250" alt="Chrysler Up">
+        	</li>
+           	<li class="empty cloned"></li>
+        	<li>
+        		<img src="img/carousel/gameplay6.jpg" height="125" width="250" alt="Wonky Buildings">
+        	</li>
+        	<li class="empty cloned"></li>
+         	<li>
+         		<img src="img/carousel/gameplay7.jpg" height="125" width="250" alt="Leaves of Fall">
+         	</li>
+        	<li class="empty"></li>
+        	<li class="cloned">
+        		<img src="img/carousel/gameplay8.jpg" height="125" width="250" alt="Tall Glow">
+        	</li>
+        	<!-- <li class="empty cloned"></li>
+        	<li class="cloned">
+        		<img src="http://farm4.static.flickr.com/3184/3047872076_61a511a04b_s.jpg" height="125" width="250" alt="Wet Cab">
+        	</li>
+        	<li class="empty cloned"></li>
+        	<li class="cloned">
+        		<img src="http://farm4.static.flickr.com/3048/3047871878_84bfacbd35_s.jpg" height="125" width="250" alt="Rockefella">
+        	</li> -->
+        </ul>        
+      </div>
+      <a class="arrow back">&lt;</a>
+      <a class="arrow forward">&gt;</a>
+    </div>
+    <hr class="footerhr">
 	<footer>
 		&copy; 2013 Ethan Niu <span class="toplink"><a href="#top">Top</a></span>
 	</footer>
