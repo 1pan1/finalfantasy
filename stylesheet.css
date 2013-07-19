@@ -98,7 +98,11 @@ nav ul li:last-child {
 }
 
 nav ul li:hover {
-	background-color: brown;
+	background-color: #7C10AD;
+}
+
+nav ul li a {
+	text-decoration: none;
 }
 
 /* Game List */
