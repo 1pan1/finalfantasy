@@ -4,6 +4,7 @@
 	<title>Final Fantasy: A History</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="icon" type="image/ico" href="img/favicon.ico">
 	<script type="text/javascript" src="javascripts/main.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -25,19 +26,15 @@
 		            currentPage = 1,
 		            pages = Math.ceil($items.length / visible);            
 
-
-		        // 1. Pad so that 'visible' number will always be seen, otherwise create empty items
 		        if (($items.length % visible) != 0) {
 		            $slider.append(repeat('<li class="empty" />', visible - ($items.length % visible)));
 		            $items = $slider.find('> li');
 		        }
 
-		        // 2. Top and tail the list with 'visible' number of items, top has the last section, and tail has the first
 		        $items.filter(':first').before($items.slice(- visible).clone().addClass('cloned'));
 		        $items.filter(':last').after($items.slice(0, visible).clone().addClass('cloned'));
-		        $items = $slider.find('> li'); // reselect
-		        
-		        // 3. Set the left position to the first 'real' item
+		        $items = $slider.find('> li'); 
+
 		        $wrapper.scrollLeft(singleWidth * visible);
 		        
 		        // 4. paging function
@@ -54,7 +51,6 @@
 		                    page = pages;
 		                } else if (page > pages) {
 		                    $wrapper.scrollLeft(singleWidth * visible);
-		                    // reset back to start position
 		                    page = 1;
 		                } 
 
@@ -66,7 +62,6 @@
 		        
 		        $wrapper.after('<a class="arrow back">&lt;</a><a class="arrow forward">&gt;</a>');
 		        
-		        // 5. Bind to the forward and back buttons
 		        $('a.back', this).click(function () {
 		            return gotoPage(currentPage - 1);                
 		        });
@@ -75,7 +70,6 @@
 		            return gotoPage(currentPage + 1);
 		        });
 		        
-		        // create a public interface to move to a specific page
 		        $(this).bind('goto', function (event, page) {
 		            gotoPage(page);
 		        });
@@ -159,6 +153,25 @@
 		<p>
 			Nova Chrysalia, a world diseased by Chaos. Made up of four regions, a monorail provides transportation for travel throughout this realm. Lightning, the protagonist, begins her final adventure in this plague-ridden land devoid of hope. However, her journey won’t be long, as the Chaos has bled through the soil, drawing near the world’s end.
 		</p>
+		<p class="review">
+			Review:
+			<br>
+			<strong>9.5</strong>
+			<h4>Presentation</h4>
+			<p>Unbelievably gorgeous cutscenes, polished interfaces and a great story.</p>
+			9
+			Graphics
+			Character models are excellent and some of the in-game environments are breathtaking. Occasional slowdown isn't enough to detract from the visuals overall.
+			9
+			Sound
+			Incredibly impressive voice acting all around. Vanille's perkiness can take some getting used to, but the entire cast is great. Music is not as memorable as past Final Fantasy titles, but it's good.
+			8.5
+			Gameplay
+			Fantastic battle system that combines frantic speed with plenty of rewards. Linear structure and lack of content outside of main quest is somewhat disappointing.
+			8.5
+			Lasting Appeal
+			My first play through took me about 60 hours to complete. Although it's a shame there are no fun mini-games to serve as distractions, there are still plenty of side missions to enjoy.
+		</p>
 		<div>
 			<figure onclick="return enlarge(this)" id="enlarge" class="imgleft"></figure>
 			<figure onclick="return enlarge(this)" id="enlarge" class="imgright"></figure>
@@ -171,6 +184,11 @@
 		<h2>Final Fantasy XII <span class="toplink"><a href="#top">Top</a></span></h2>
 		<p>
 			The game takes place in the fictional land of Ivalice, where the empires of Archadia and Rozarria are waging an endless war. Dalmasca, a small kingdom, is caught between the warring nations. When Dalmasca is annexed by Archadia, its princess, Ashe, creates a resistance movement. During the struggle, she meets Vaan, a young adventurer who dreams of commanding an airship. They are quickly joined by a band of allies; together, they rally against the tyranny of the Archadian Empire.
+		</p>
+		<p class="review">
+			Review:
+			<br>
+			As this game is still in development, There is currently no review or other information avaliable.
 		</p>
 		<div>
 			<figure onclick="return enlarge(this)" id="enlarge" class="imgtop"></figure><br>
