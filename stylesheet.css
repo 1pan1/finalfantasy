@@ -5,11 +5,11 @@
 	margin: 0;
 	padding: 0;
 }
-
+/*
 ::selection {
 	background: #7C10AD;
 }
-
+*/
 body {
 	font-family: 'Almendra', serif;
 	background: url("backgrounds/subtle_carbon.png");
@@ -24,20 +24,6 @@ p {
 	line-height: 1.5em;
 	margin-left: 15px;
 	margin-right: 15px;
-}
-
-.gamelist .review {
-	padding: 10px;
-	padding-bottom: 0;
-	padding-right: 0;
-	margin: 30px;
-	margin-right: 0;
-	text-align: left;
-	float: none;
-}
-
-.even .review {
-	width: 380px;
 }
 
 .enlarge {
@@ -144,6 +130,25 @@ nav ul li:hover {
 
 .even div {
 	float: right;
+}
+
+.gamelist .review {
+	padding: 10px;
+	padding-bottom: 0;
+	padding-right: 0;
+	margin: 30px;
+	margin-right: 0;
+	text-align: left;
+	float: none;
+	font-size: 14px;
+}
+
+.even .review {
+	width: 380px;
+}
+
+.gamelist .review, .gamelist .review h3, .gamelist .review strong, .gamelist .review h4, .gamelist .review p {
+	color: #1BA52C;
 }
 
 /* Game List Images */
