@@ -1,14 +1,13 @@
 /* General */
 
 * {	
-	/*color: #FDFF00;*/
-	color: #FF6400;
+	color: #F15802;
 	margin: 0;
 	padding: 0;
 }
 
 ::selection {
-	background: blue;
+	background: #7C10AD;
 }
 
 body {
@@ -27,10 +26,18 @@ p {
 	margin-right: 15px;
 }
 
-.review {
+.gamelist .review {
+	padding: 10px;
+	padding-bottom: 0;
+	padding-right: 0;
 	margin: 30px;
 	margin-right: 0;
 	text-align: left;
+	float: none;
+}
+
+.even .review {
+	width: 380px;
 }
 
 .enlarge {
@@ -196,12 +203,12 @@ nav ul li:hover {
 }
 
 .xii div .imgtop {
-	background: url("img/xii/xii1.jpg") no-repeat 0 0;
+	background: url("img/xii/xii2.jpg") no-repeat 0 0;
 	background-size: auto 100%;
 }
 
 .xii div .imgbottom {
-	background: url("img/xii/xii2.jpg") no-repeat 0 0;
+	background: url("img/xii/xii1.jpg") no-repeat 0 0;
 	background-size: auto 100%;
 }
 
@@ -256,12 +263,12 @@ nav ul li:hover {
 }
 
 .vi div .imgtop {
-	background: url("img/vi/vi1.jpg") no-repeat 0 0;
+	background: url("img/vi/vi2.jpg") no-repeat 0 0;
 	background-size: auto 100%;
 }
 
 .vi div .imgbottom {
-	background: url("img/vi/vi2.jpg") no-repeat 0 0;
+	background: url("img/vi/vi1.jpg") no-repeat 0 0;
 	background-size: auto 100%;
 }
 
@@ -315,11 +322,11 @@ nav ul li:hover {
 	background-size: auto 100%;
 }
 
-.gamelist div #enlarge {
+.gamelist div .image {
 	background-position: right;
 }
 
-.gamelist div #enlarge.imgleft {
+.gamelist div .image.imgleft {
 	background-position: left;
 }
 
@@ -492,7 +499,7 @@ footer {
 }
 
 @media screen and (max-width: 650px) {
-	.even div figure#enlarge{
+	.even div figure.image{
 		width: 140px;
 		background-position: center;
 	}
@@ -501,7 +508,7 @@ footer {
 		width: 340px;
 	}
 
-	.gamelist div figure#enlarge {
+	.gamelist div figure.image {
 		width: 200px;
 		background-position: center;
 	}

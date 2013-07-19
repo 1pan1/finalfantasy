@@ -5,11 +5,10 @@ function enlarge(photo) {
 
 jQuery(function($) { 
 
-  // settings
-  var $slider = $('.slider'); // class or id of carousel slider
-  var $slide = 'li'; // could also use 'img' if you're not using a ul
-  var $transition_time = 1000; // 1 second
-  var $time_between_slides = 4000; // 4 seconds
+  var $slider = $('.slider');
+  var $slide = 'li';
+  var $transition_time = 1000;
+  var $time_between_slides = 4000;
 
   function slides(){
     return $slider.find($slide);
@@ -17,11 +16,9 @@ jQuery(function($) {
 
   slides().fadeOut();
 
-  // set active classes
   slides().first().addClass('active');
   slides().first().fadeIn($transition_time);
 
-  // auto scroll 
   $interval = setInterval(
     function(){
       var $i = $slider.find($slide + '.active').index();
@@ -29,7 +26,7 @@ jQuery(function($) {
       slides().eq($i).removeClass('active');
       slides().eq($i).fadeOut($transition_time);
 
-      if (slides().length == $i + 1) $i = -1; // loop to start
+      if (slides().length == $i + 1) $i = -1;
 
       slides().eq($i + 1).fadeIn($transition_time);
       slides().eq($i + 1).addClass('active');
@@ -37,22 +34,3 @@ jQuery(function($) {
     , $transition_time +  $time_between_slides 
   );
 });
-
-function removeClass(element, cssClass) {
-
-  // var classes = element.className.split(' ');
-
-  // var j = classes.length;
-  // while (j--) {
-  //   if (classes[j] === cssClass) {
-  //     classes.splice(j, 1);
-  //   }
-  // }
-
-  // element.className = classes.join(' ');
-
-  // document.getElementById('elementid').className = document.getElementById('elementid').className.replace('normal');
-}
-
-  // var enlarge = document.getElementById('enlarge');
-  // removeClass(enlarge, 'enlarge');
