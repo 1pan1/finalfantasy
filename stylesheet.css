@@ -359,7 +359,7 @@ label { display: block; }
 
 .infiniteCarousel .wrapper {
   width: 640px; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
-  overflow: auto;
+  overflow: hidden;
   min-height: 10em;
   margin: 0 80px;
   position: absolute;
